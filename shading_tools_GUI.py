@@ -184,10 +184,10 @@ class Shading_Tools_GUI( QtWidgets.QDialog ):
         exec_widget.layout().addWidget(self.process_all_btn)
         exec_widget.layout().addSpacerItem(QtWidgets.QSpacerItem(20, 20))
 
-        self.create_next_btn = QtWidgets.QPushButton('Create Next')
-        self.create_next_btn.setFixedHeight(button_height)
-        self.create_next_btn.setFixedWidth(100)
-        exec_widget.layout().addWidget(self.create_next_btn)
+        self.check_tex_sets_btn = QtWidgets.QPushButton('Check Tex Sets')
+        self.check_tex_sets_btn.setFixedHeight(button_height)
+        self.check_tex_sets_btn.setFixedWidth(100)
+        exec_widget.layout().addWidget(self.check_tex_sets_btn)
         exec_widget.layout().addSpacerItem(QtWidgets.QSpacerItem(5, 5, QtWidgets.QSizePolicy.Expanding))
         
         
@@ -198,7 +198,7 @@ class Shading_Tools_GUI( QtWidgets.QDialog ):
         self.refresh_btn.clicked.connect( self.find_texture_sets )
         # Create all materials button
         self.process_all_btn.clicked.connect( self.create_all_materials )
-        self.create_next_btn.clicked.connect( self.check_textureSets )
+        self.check_tex_sets_btn.clicked.connect( self.check_textureSets )
 
 
 
