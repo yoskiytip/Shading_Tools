@@ -95,9 +95,11 @@ def material_from_textureSet( mat_name, textureSet_dict, folder_path ):
             cmds.connectAttr(('%s.outColor.outColorR' % tex), matConnection)
         # Roughness
         elif tex_type == 'Roughness':
-            cmds.connectAttr(('%s.outColor.outColorR' % tex), matConnection)
+            cmds.connectAttr(('%s.outColor.outColorR' % tex), matConnection, f=True)
         # Glossiness
         elif tex_type == 'Glossiness':
+            if 'Roughness' in textureSet_dict:
+                continue
             reverse = shading_tools_utils.setup_reverse_node( mat_name, tex, tex_type )
             cmds.connectAttr( ('%s.output.outputX' % reverse), matConnection )
         # Anisotropy
@@ -123,13 +125,15 @@ def material_from_textureSet( mat_name, textureSet_dict, folder_path ):
             cmds.connectAttr(('%s.outColor.outColorR' % tex), matConnection)
         # Bump
         elif tex_type == 'Bump':
+            if 'Normal' in textureSet_dict:
+                continue
             bump = setup_RS_bump_node(mat_name, tex)
             cmds.connectAttr(('%s.out' % bump), ('%s.bump_input' % mat_name))
         # Normal
         elif tex_type == 'Normal':
             normal = setup_RS_normal_node( mat_name, tex )
             cmds.delete( tex )
-            cmds.connectAttr(('%s.outDisplacementVector' % normal), ('%s.bump_input' % mat_name))
+            cmds.connectAttr(('%s.outDisplacementVector' % normal), ('%s.bump_input' % mat_name), f=True)
         elif tex_type == 'Displacement':
             continue
         else:
