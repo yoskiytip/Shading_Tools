@@ -87,7 +87,7 @@ def material_from_textureSet( mat_name, textureSet_dict, folder_path ):
         # Diffuse
         # Translucency
         # Translucency_Mask
-        elif tex_type == 'Translucency Mask':
+        if tex_type == 'Translucency Mask':
             cmds.connectAttr(('%s.outColor.outColorR' % tex), matConnection)
         # Reflection
         # Reflection Mask
@@ -182,7 +182,7 @@ def check_textureSets_number( folder_path, suffixes ):
     for texSet in texSets_dict:
         if ( cmds.objExists( ('rs_%s' % texSet) ) ):
             continue
-        print ( texSet )
+        # print ( texSet )
     print ( 'total material number: %s' % str(len(texSets_dict)))
 
 
